@@ -1,8 +1,11 @@
 (function () {
   
   function mixin_loader(lodash) {
-    var math = this.math = {};
-    if(lodash === undefined) {    
+    var math = {};
+    if(this) {
+      this.math = math;
+    }
+    if(!lodash) {    
       lodash = require('lodash').runInContext();
     }
    
@@ -329,7 +332,7 @@
     return lodash;
   }
 
-  if(window !== undefined) {
+  if(typeof window !== 'undefined') {
     mixin_loader(_);
   }
   else {
